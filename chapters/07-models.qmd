@@ -1,0 +1,168 @@
+# Model the System {#sec-models}
+
+> A model is a question made visible. If it does not change a decision, it is decoration.
+
+## The Concept First
+
+Analysis and design use models to make a system easier to reason about. A model is a simplified representation of something: the boundary, the data, the states, the decisions or the interactions.
+
+Different questions need different models.
+
+- A **context diagram** answers: what is inside the system, and what crosses the boundary?
+- A **use case** answers: who is trying to achieve what, and what can interrupt them?
+- A **data model** answers: what things does the system need to remember, and how are they related?
+- A **state model** answers: what states can an entity be in, and what moves it between them?
+- A **decision model** answers: who decides, on what evidence, with what authority?
+- A **human-AI interaction model** answers: what does the model propose, what does the human see, and when can the human override?
+
+The smallest useful set is the set that answers the open questions. Modelling everything is a way to avoid deciding anything.
+
+For AI-enabled systems, two models are often missing. The first is the decision model: who owns the output, who reviews it and who can override it. The second is the data provenance model: where the training, prompt and retrieval data came from, how fresh it is and what happens when it is wrong.
+
+## Understanding Through a Map
+
+A road map, a geological map and a property map can describe the same place. None is complete. Each is useful for a different decision.
+
+A road map that shows every building but no distances is not better than a simpler map. It is harder to use. A geological map used to plan a delivery route is the wrong model, however accurate it is.
+
+System models work the same way. A detailed data model does not help a sponsor decide whether to buy or build. A context diagram does not help a developer design a table. Choose the model for the decision in front of you.
+
+## Discovering Models with Your AI Partner
+
+### Exploration 1: Ask Which Question the Model Answers
+
+Before generating a diagram, ask what decision it supports.
+
+```text
+Here is the open question:
+[paste it]
+
+Which model would help answer it: context, use case, data, state, decision
+or human-AI interaction? Recommend the smallest model, explain what it
+will show and name what it will deliberately hide.
+```
+
+This prevents the common failure where the team produces a comprehensive model set and still cannot decide anything.
+
+### Exploration 2: Build the State Model
+
+State models expose exceptions that use cases miss.
+
+```text
+Model the lifecycle of a tool in a community tool library. Include the
+states available, reserved, on loan, overdue, under maintenance and
+retired. For each transition, name the event, the actor and the rule.
+Then find one state that a simple "available or unavailable" model would
+hide.
+```
+
+The hidden state is usually where the operational problem lives: a tool that is reserved but not collected, or returned but not checked.
+
+### Exploration 3: Model the Decision
+
+For an AI feature, model the decision rather than the model call.
+
+```text
+The assistant recommends an alternative tool when one is unavailable.
+Draw a decision model showing the member request, the assistant
+recommendation, the evidence shown to the volunteer, the volunteer's
+decision, the override path and the audit record. Mark where the system
+may act and where a human must act.
+```
+
+If the model has no human decision, the organisation has automated a decision it may still be accountable for.
+
+### Exploration 4: Model the Data Provenance
+
+Ask where the AI's knowledge comes from.
+
+```text
+The assistant answers questions from the reservation database and a
+policy document. Draw a provenance model showing the source, owner, update
+frequency, quality check and failure behaviour for each data source.
+Mark any source with no owner.
+```
+
+A source with no owner is a future incident.
+
+## From Concept to Practice
+
+A small model set for the tool library might include:
+
+| Question | Model | What it decides |
+|---|---|---|
+| What is inside the system? | Context diagram | Boundary and interfaces |
+| Who does what, and what interrupts it? | Use cases | Behaviour and exceptions |
+| What must be remembered? | Data model | Entities, relationships and ownership |
+| What states can a tool be in? | State model | Availability, maintenance and overdue rules |
+| Who decides when the assistant is wrong? | Decision model | Authority, review and override |
+| Where does the AI's knowledge come from? | Provenance model | Data quality and freshness |
+
+A data model might start with:
+
+- **Member**: identity, contact, membership status, deposit status
+- **Tool**: catalogue ID, name, condition, deposit value, state
+- **Reservation**: member, tool, collection date, status
+- **Loan**: reservation, collection time, return time, condition out, condition in
+- **Maintenance record**: tool, reason, start, end, owner
+
+The relationships matter as much as the entities. A reservation without a member is not a reservation. A loan without a condition check is an unverified handover.
+
+A state model for a tool:
+
+```text
+available -> reserved -> on loan -> available
+                    \-> overdue -> on loan or returned
+available -> under maintenance -> available or retired
+reserved -> available (cancelled or not collected)
+```
+
+The diagram is small. It exposes rules that a feature list hides: what happens when a reservation expires, who can move a tool to maintenance and whether an overdue tool can be reserved.
+
+## Business Connection
+
+Models are negotiation tools. They let a volunteer, a coordinator, a developer and a sponsor argue about the same object without reading code.
+
+AI makes model generation cheap, which makes model selection more important. An agent can produce a data model, a class diagram and a sequence diagram in seconds. None of them will tell you whether the tool library needs deposits, whether a reservation can be transferred or who may override a maintenance block.
+
+The value is in the argument the model starts, not the diagram it produces.
+
+## Practice Exercises
+
+**Exercise 7.1 (Level 1).** Draw a state model for a tool. Mark one state a simple available/unavailable model would miss.
+
+**Exercise 7.2 (Level 2).** Build a data model for members, tools, reservations and loans. Name one relationship that carries a business rule.
+
+**Exercise 7.3 (Level 3).** Choose one open question in your project and select the smallest model that would answer it. Explain what the model hides.
+
+**Exercise 7.4 (Level 4).** Draw a decision model for an AI recommendation. Mark the system action, the human review and the override.
+
+**Exercise 7.5 (Level 5).** Build a provenance model for an AI feature. For every data source, name the owner, freshness requirement, quality check and failure behaviour.
+
+## Chapter Summary
+
+- Models are selected for the decision they support, not for completeness.
+- Context, use case, data, state, decision and provenance models answer different questions.
+- AI features need a decision model and a provenance model, not only a system diagram.
+- A source with no owner is a future incident.
+- The argument a model starts is more valuable than the diagram itself.
+
+## Reflection
+
+Before moving on, ensure you:
+
+- [ ] Named the question each model answers
+- [ ] Built a state model that exposes at least one hidden exception
+- [ ] Modelled who decides when an AI recommendation is wrong
+- [ ] Mapped where the AI's data comes from and who owns it
+- [ ] Removed at least one model that answered no open question
+
+## Your Learning Journal
+
+1. Which model changed your understanding of the problem?
+2. What did the state model reveal that the use cases missed?
+3. Where could a model look complete while hiding a decision?
+
+## Next Steps
+
+The models expose the decisions. The next chapter compares the options and records why one was chosen.

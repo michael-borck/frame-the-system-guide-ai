@@ -1,0 +1,169 @@
+# Non-Functional Requirements: Qualities and Constraints {#sec-non-functional}
+
+> "It works" is not a quality requirement. It is the start of a conversation about how well, for whom, under what load and at what cost.
+
+## The Concept First
+
+Non-functional requirements describe how well the system must behave. They cover qualities such as performance, availability, security, privacy, accessibility, usability, maintainability, recoverability and compliance.
+
+They are easy to write badly because the words sound like requirements. "The system must be secure." "The site must be easy to use." "The AI must be accurate." None of those can be checked. Each one can be read in several ways.
+
+A quality scenario makes the requirement testable. It names:
+
+- the source of the stimulus
+- the stimulus
+- the system's response
+- the measure that decides whether the response is acceptable
+
+For example: "When a member on a phone with a slow connection opens the booking page, the page must show the available tools within three seconds for 90% of requests." That is a requirement someone can test.
+
+AI adds qualities that traditional SAD did not have to carry: accuracy on a defined evaluation set, safety under adversarial input, latency and cost per request, privacy of prompts, stability under model updates, and the ability to explain or escalate. The same discipline applies. Name the measure and the condition.
+
+## Understanding Through a Bridge
+
+A bridge is not specified by saying "make it strong". It is specified by loads, spans, materials, wind, maintenance intervals and inspection rules. The requirements are numbers attached to conditions.
+
+A bridge that carries a bicycle is not inadequate because it cannot carry a truck. It is inadequate if it fails under the load it was designed for. Quality is fitness for purpose in a named context.
+
+Software qualities work the same way. A booking page for a volunteer desk at 9am has a different availability requirement from a payment system that must run all day. A model that answers questions about opening hours has a different accuracy requirement from a model that recommends a structural repair.
+
+## Discovering Quality Scenarios with Your AI Partner
+
+### Exploration 1: Turn Vague Qualities into Scenarios
+
+Ask the AI to interrogate each adjective.
+
+```text
+Here are my draft quality requirements:
+[paste them]
+
+For each one, write three questions that would expose what it means:
+who is affected, under what conditions, and what observable result would
+count as acceptable. Do not invent a number until the condition is clear.
+```
+
+The output gives you the raw material for a scenario. "Fast" becomes "on the desk laptop, over the library Wi-Fi, during the Saturday morning rush".
+
+### Exploration 2: Write the Quality Scenario
+
+Use a fixed structure so the scenario cannot hide.
+
+```text
+Turn this quality requirement into a quality scenario:
+"The AI assistant must be accurate."
+
+Use this structure:
+- Source:
+- Stimulus:
+- Environment:
+- Response:
+- Measure:
+
+Then write a second scenario for a different population or condition.
+```
+
+A useful answer will distinguish overall accuracy from accuracy on the cases that matter: overdue tools, restricted tools, tools under maintenance, misspellings and questions the assistant should refuse.
+
+### Exploration 3: Stress the Trade-offs
+
+Quality requirements conflict. Ask the AI to make the trade-offs visible.
+
+```text
+The tool library wants the assistant to be fast, cheap, private, accurate
+and available. For each pair, describe the tension and the decision the
+organisation has to make. Do not pretend all five can be maximised.
+```
+
+Latency and cost trade against larger models and more retrieval. Privacy trades against sending data to a hosted provider. Availability trades against dependence on that provider. The output is a set of decisions, not a scorecard.
+
+### Exploration 4: Design the Quality Gate
+
+Ask what evidence would show the quality held after launch.
+
+```text
+For each quality scenario, name the evidence we would collect, how often
+we would review it, who owns the review and what would trigger a fallback
+or rollback.
+```
+
+A quality requirement with no monitoring is a launch-day hope.
+
+## From Concept to Practice
+
+A quality scenario table keeps the requirement, the measure and the owner together.
+
+| Quality | Scenario | Measure | Owner |
+|---|---|---|---|
+| Performance | Member opens booking page on a phone over library Wi-Fi | Available tools visible within 3 seconds for 90% of requests | Coordinator |
+| Availability | Desk opens at 9am on a Saturday | Booking view available 99.5% of desk hours | Support volunteer |
+| Accuracy | Assistant answers availability questions from the reservation list | 95% correct on a 200-case evaluation set, with no false "available" answer for a tool on loan | Volunteer lead |
+| Safety | Assistant receives a request for a restricted or dangerous tool | Refuses and directs the member to a volunteer | Coordinator |
+| Privacy | Member asks about their own reservations | Assistant reveals only that member's data | Treasurer and privacy owner |
+| Cost | Assistant handles a month of desk questions | Model spend under the agreed monthly cap | Treasurer |
+| Accessibility | Keyboard-only member completes a reservation | Full task completed without a mouse, with visible focus | Accessibility reviewer |
+| Recoverability | Model provider is unavailable | Desk can complete reservations from the list within one minute | Support volunteer |
+
+The numbers are examples, not universal truths. The organisation sets them from evidence and context.
+
+A quality scenario template:
+
+```markdown
+# Quality scenario: [name]
+
+**Source:** Who or what produces the stimulus.
+**Stimulus:** The event or input.
+**Environment:** Load, device, network, data, time.
+**Response:** What the system must do.
+**Measure:** The threshold and the population.
+**Evidence:** How we will know after launch.
+**Owner:** Who reviews the evidence.
+**Fallback:** What happens when the measure is not met.
+```
+
+For AI qualities, the measure needs a named evaluation set and a named slice. "95% accurate" means little if the set is the same examples used to tune the prompt, or if the failures are concentrated on the members who need the most help.
+
+## Business Connection
+
+Quality requirements are where cost, risk and trust meet. A system that is fast but leaks personal data is not a good system. A model that is accurate on average and wrong on the cases that matter is not accurate in the sense the organisation needs.
+
+AI vendors often present quality as a model property. The organisation experiences it as a service property: latency, price, availability, data handling, change notice and support. Those belong in the requirements and the contract.
+
+## Practice Exercises
+
+**Exercise 5.1 (Level 1).** Rewrite "the site must be easy to use" as a quality scenario with a source, stimulus, response and measure.
+
+**Exercise 5.2 (Level 2).** Write three quality scenarios for the booking system: performance, accessibility and recoverability.
+
+**Exercise 5.3 (Level 3).** Write two accuracy scenarios for the AI assistant using different populations or conditions. Explain why one overall number would hide the difference.
+
+**Exercise 5.4 (Level 4).** Identify a conflict between two quality requirements in your project. Describe the trade-off and who should decide it.
+
+**Exercise 5.5 (Level 5).** Design the post-launch evidence for one AI quality requirement. Include the evaluation set, review frequency, owner, threshold and fallback.
+
+## Chapter Summary
+
+- Non-functional requirements describe how well the system must behave.
+- Quality scenarios name the source, stimulus, environment, response and measure.
+- AI adds accuracy, safety, privacy, cost, latency, drift and explainability to the quality set.
+- A measure needs a population and an evaluation set, not just a percentage.
+- Every quality requirement needs evidence and an owner after launch.
+
+## Reflection
+
+Before moving on, ensure you:
+
+- [ ] Converted at least three vague qualities into scenarios
+- [ ] Named the population and the evaluation set for any AI accuracy measure
+- [ ] Identified a trade-off and its decision-maker
+- [ ] Named who reviews the evidence after launch
+- [ ] Defined a fallback when the quality target is missed
+
+## Your Learning Journal
+
+1. Which quality requirement was hardest to make measurable?
+2. Where could an average score hide a failure that matters?
+3. What would you monitor in the first month after launch?
+
+## Next Steps
+
+The qualities are named. The next chapter turns behaviour and quality into requirements that can be checked, including the cases where a probabilistic system must be judged by evidence rather than a single pass.

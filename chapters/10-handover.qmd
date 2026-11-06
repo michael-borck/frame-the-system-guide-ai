@@ -1,0 +1,181 @@
+# The Handover and the Last 20% {#sec-handover}
+
+> A system is not finished when it works on the builder's laptop. It is finished when someone else can run it, check it, afford it and recover it.
+
+## The Concept First
+
+Handover is the transfer of operational responsibility. It includes the evidence that the system meets its requirements, the knowledge someone needs to run it, the access model, the support path, the monitoring, the fallback and the open questions.
+
+A handover pack usually contains:
+
+- the problem statement and scope
+- the requirements and traceability matrix
+- the design decisions and the AI register
+- the acceptance evidence and known gaps
+- the runbook for common failures
+- the support and escalation path
+- the access and data ownership model
+- the monitoring, review and incident process
+- the training material
+- the cost model and the exit plan
+
+The "last 20%" is the work that turns a working build into an operable system. It is not a final sprint of features. It is the work that makes the first month survivable.
+
+For AI-enabled systems, handover includes model monitoring, evaluation refresh, prompt change control, provider change notice, fallback when the model is wrong or unavailable, and an incident process for harmful or misleading output. A model that works on launch day is not a handover. It is a starting condition.
+
+## Understanding Through a Hotel Opening
+
+A hotel is not ready when the rooms are furnished. It is ready when the front desk can check a guest in, housekeeping can turn a room, maintenance can fix a leak, the kitchen can serve breakfast, the fire alarm works, the booking system reconciles and the night manager knows who to call at 3am.
+
+The opening checklist is not a list of features. It is a list of conditions that make the operation survivable. The hotel can open with one restaurant closed. It cannot open without a working fire exit.
+
+Software handover works the same way. The team can launch without a nice-to-have report. It cannot launch without a way to restore the reservation record, a support contact, a fallback when the assistant is wrong and a named owner for the system.
+
+## Discovering Handover with Your AI Partner
+
+### Exploration 1: Build the Operational Checklist
+
+Ask the AI to work from failure, not features.
+
+```text
+Here is the system scope and the AI dependencies:
+[paste them]
+
+Write a handover checklist by working backwards from failure. Include:
+data loss, reservation corruption, payment failure, model outage, wrong
+model answer, privacy incident, staff turnover, provider price change and
+loss of the person who built it. For each, name the evidence that the
+team can recover.
+```
+
+A checklist that only covers the happy path is a launch plan, not a handover.
+
+### Exploration 2: Test the Runbook
+
+Ask the AI to find the gaps in the runbook.
+
+```text
+Here is the runbook:
+[paste it]
+
+Act as a new support volunteer at 9am on a Saturday. The assistant is
+returning wrong availability answers and the coordinator is unavailable.
+Walk through the runbook step by step. Mark every place where you would
+have to guess, call someone or stop.
+```
+
+The gaps are the training needs. The runbook is not finished until a new person can follow it under pressure.
+
+### Exploration 3: Design the Monitoring
+
+Monitoring is part of acceptance for an AI system.
+
+```text
+Design the first-month monitoring for the tool library assistant.
+Include answer accuracy, false availability claims, refusal rate, human
+override rate, latency, cost, privacy incidents and user reports.
+For each metric, name the threshold, the review frequency, the owner and
+the action when the threshold is crossed.
+```
+
+A metric with no action is a dashboard. A metric with an owner and an action is a control.
+
+### Exploration 4: Measure the Outcome
+
+Ask whether the system changed the work.
+
+```text
+The goal was to reduce double bookings and volunteer time on the phone.
+Design the post-launch review. Include the baseline, the measures, the
+review date, the people involved and the decision the review will make.
+Do not measure page views.
+```
+
+The outcome measures come from the problem statement. If the project cannot name them, it was measuring outputs.
+
+## From Concept to Practice
+
+A handover pack is a set of links, not a folder of unread PDFs.
+
+```markdown
+# Handover: tool library system
+
+## Accepted
+- FR-01 to FR-12 verified; see traceability matrix
+- NFR-01, NFR-03, NFR-07, NFR-09 verified; see evaluation and review records
+- Known gaps: waitlist not included; damage charges deferred
+
+## Run
+- Runbook: `docs/runbook.md`
+- Support: volunteer lead, weekday mornings; escalation to coordinator
+- Access: role list and offboarding steps
+- Backup and restore: tested 2026-10-20; restore time 40 minutes
+
+## AI
+- Model and prompt versions: see AI register
+- Evaluation: monthly on 200 held-out cases; owner: volunteer lead
+- Fallback: assistant disabled; desk uses reservation list
+- Incident: wrong answer or privacy event logged and reviewed within one week
+- Provider change: review notice, rerun evaluation before accepting
+
+## Measure
+- Baseline: 6 double bookings per month; 7 hours per week on availability calls
+- Review: 30 days and 90 days after launch
+- Decision: continue, adjust, or replace
+
+## Open questions
+- Is the deposit workflow acceptable to the treasurer?
+- Does the assistant work on the old desk laptop?
+- Who owns the evaluation set after the volunteer lead leaves?
+```
+
+The pack is short because it links to the evidence. It does not repeat every document.
+
+## Business Connection
+
+Handover is where the benefits case is tested. A system can be delivered and still fail to change the work because nobody owns the process, the training or the monitoring.
+
+AI systems need an owner after launch. The model provider will change something. The data will drift. A user will find a failure the evaluation set missed. The organisation needs a named person who can decide whether to retrain, change the prompt, add a rule, disable the assistant or accept the risk.
+
+The last 20% is also where the cost becomes real. Model usage, evaluation, monitoring and support are ongoing costs. A handover that does not name them is a budget surprise.
+
+## Practice Exercises
+
+**Exercise 10.1 (Level 1).** Write a five-item handover checklist for the booking system.
+
+**Exercise 10.2 (Level 2).** Write the runbook for one failure: the assistant is unavailable at 9am on a Saturday.
+
+**Exercise 10.3 (Level 3).** Design the first-month monitoring for the assistant, including thresholds, owners and actions.
+
+**Exercise 10.4 (Level 4).** Write the post-launch review plan for the problem statement. Include the baseline, outcome measures, review dates and decision.
+
+**Exercise 10.5 (Level 5).** Produce a complete handover pack for a real or simulated system, including acceptance evidence, known gaps, AI register, runbook, support path, monitoring, cost and open questions.
+
+## Chapter Summary
+
+- Handover transfers operational responsibility, not just files.
+- The last 20% covers acceptance evidence, runbook, support, access, monitoring and recovery.
+- AI systems need model monitoring, evaluation refresh, prompt control, fallback and incident handling.
+- Monitoring needs thresholds, owners and actions.
+- The post-launch review measures the outcome in the problem statement, not page views.
+
+## Reflection
+
+Before moving on, ensure you:
+
+- [ ] Named the evidence that the system meets its requirements
+- [ ] Listed the known gaps and the open questions
+- [ ] Tested the runbook with someone who did not build the system
+- [ ] Assigned an owner for AI monitoring and incident response
+- [ ] Defined the outcome measures and review dates
+- [ ] Named the ongoing cost and the exit plan
+
+## Your Learning Journal
+
+1. What would break first in the first month?
+2. Who owns the system after handover, and do they have the authority they need?
+3. What outcome would prove the project was worth doing?
+
+## Next Steps
+
+The system is handed over. The appendices collect the templates, checklists and registers used through the book so you can apply them to your own project.

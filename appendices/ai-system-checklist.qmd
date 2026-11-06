@@ -1,0 +1,62 @@
+# AI System Checklist {#sec-ai-checklist}
+
+Use this checklist when a system includes a model, an AI service or an automated recommendation. It is not a certification. It is a set of questions that should have owners and evidence.
+
+## Problem and authority
+
+- [ ] The task the model supports is named.
+- [ ] The decision a human owns is named.
+- [ ] The consequence of a wrong answer is understood.
+- [ ] The system can refuse, escalate or fall back.
+- [ ] A human can override the model without fighting the interface.
+
+## Data
+
+- [ ] Every data source has an owner.
+- [ ] The freshness requirement is stated.
+- [ ] Personal and sensitive data are identified.
+- [ ] Data use is permitted by policy and contract.
+- [ ] Retrieval sources are versioned or dated.
+- [ ] Stale or missing data has a defined behaviour.
+
+## Model and provider
+
+- [ ] The model version is recorded.
+- [ ] The provider's change and notice policy is known.
+- [ ] The cost per request and monthly cap are known.
+- [ ] Latency and availability expectations are recorded.
+- [ ] The exit path if the provider changes terms or price is defined.
+
+## Evaluation
+
+- [ ] A held-out evaluation set exists.
+- [ ] The metric and threshold are defined.
+- [ ] Important slices are evaluated separately.
+- [ ] Refusal and unsafe cases are included.
+- [ ] The evaluation can be reproduced.
+- [ ] The review owner and frequency are named.
+
+## Human oversight
+
+- [ ] The reviewer sees the evidence behind a recommendation.
+- [ ] The reviewer has time and authority to disagree.
+- [ ] Overrides are logged.
+- [ ] Automation bias is discussed with users.
+- [ ] Responsibility for the final decision is explicit.
+
+## Security and privacy
+
+- [ ] Prompts do not leak unnecessary personal data.
+- [ ] Access control applies to retrieval and logs.
+- [ ] Interactions are logged with the right retention.
+- [ ] Prompt injection and untrusted content are considered.
+- [ ] Incident response covers harmful or misleading output.
+
+## Monitoring and handover
+
+- [ ] Accuracy, refusal, override and incident metrics are monitored.
+- [ ] Each metric has a threshold, owner and action.
+- [ ] The fallback is tested.
+- [ ] The runbook covers model outage and wrong answers.
+- [ ] The post-launch review measures the outcome, not usage.
+- [ ] The system has an owner after handover.

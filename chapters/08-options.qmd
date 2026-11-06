@@ -1,0 +1,187 @@
+# Options, Trade-offs and Decisions {#sec-options}
+
+> A design decision is a bet about the future. Record what you bet, what you gave up and what would make you change your mind.
+
+## The Concept First
+
+Once the problem, stakeholders, scope, requirements and models are clear enough, the team compares solution options. The options are rarely "build" versus "do nothing". They usually include:
+
+- **Buy** a product that already does most of the work.
+- **Configure** a platform or low-code tool around the existing process.
+- **Build** a custom system because the workflow is the differentiator.
+- **Extend** an existing system with a module, integration or automation.
+- **Keep the manual process** and improve the procedure.
+- **Use an AI service** for a bounded task, rather than building a model.
+
+Each option has a total cost, a risk profile, a support burden and an exit path. A decision matrix makes the comparison visible. It does not make the decision for you.
+
+For AI-enabled systems, add options such as a hosted model API, a vendor product with AI features, retrieval over your own documents, a fine-tuned model or a rules-based assistant. The cheapest model call is not the cheapest system. Evaluation, monitoring, privacy review, prompt maintenance and provider changes all carry cost.
+
+## Understanding Through a House Purchase
+
+A couple wants more space. The options include moving to a larger house, extending the current one, converting the garage, renting a studio or changing how the rooms are used.
+
+Each option has a different mix of upfront cost, disruption, ongoing cost, flexibility and risk. Moving might be cheaper per square metre but costs school changes and stamp duty. Extending keeps the location but adds planning risk. The garage conversion is fastest but may not solve the family's actual problem.
+
+A decision matrix helps, but the couple still has to decide what they value. The analysis makes the trade-off explicit. It does not remove the judgement.
+
+Software options work the same way. A custom build can fit the workflow and create a maintenance obligation. A product can be cheap to start and expensive to leave. An AI API can be fast to integrate and dependent on a vendor's roadmap.
+
+## Discovering Options with Your AI Partner
+
+### Exploration 1: Generate the Option Set
+
+Ask for options that are genuinely different.
+
+```text
+Here is the problem statement, scope and requirements:
+[paste them]
+
+List the realistic solution options, including buy, configure, build,
+extend, manual process and an AI service. For each one, describe what
+it would mean in practice, what it would not solve and what it would
+make harder. Do not recommend one yet.
+```
+
+If every option is a variation of the same product, the model has narrowed too early. Ask for the option a cost-conscious board member would propose and the option a frustrated volunteer would propose.
+
+### Exploration 2: Build the Evaluation Criteria
+
+The criteria come from the requirements, not from the vendor's brochure.
+
+```text
+From these requirements, propose evaluation criteria for the options.
+Include fit to the work, total cost of ownership, risk, time to value,
+support, data rights, exit path and compliance. Weight the criteria for
+a small community organisation with one part-time coordinator and no IT
+staff. Explain each weight.
+```
+
+Weights are decisions. A board that values lower ongoing cost above flexibility will choose differently from a board that values control. Record the weights before scoring.
+
+### Exploration 3: Score and Sensitise
+
+A matrix is useful when you test whether the answer is stable.
+
+```text
+Score the options against the weighted criteria on a 1 to 5 scale.
+Show the calculation. Then test what happens if the most uncertain
+weight changes by 20%. Which decision is stable, and which one is
+sensitive to the assumption?
+```
+
+A decision that flips under a small change is not ready. It needs more evidence or a smaller first step.
+
+### Exploration 4: Write the Decision Record
+
+An Architecture Decision Record (ADR) captures the decision and its consequences.
+
+```text
+Write an ADR for the chosen option using this structure:
+- Context
+- Decision
+- Options considered
+- Consequences
+- Evidence
+- Conditions that would reopen the decision
+```
+
+The last section is the one teams forget. A decision without a reopening condition becomes a belief.
+
+## From Concept to Practice
+
+A decision matrix for the tool library might look like this. The scores are illustrative.
+
+| Criterion | Weight | Buy product | Configure low-code | Custom build | AI service |
+|---|---:|---:|---:|---:|---:|
+| Fit to the work | 25 | 3 | 4 | 5 | 3 |
+| Total cost over three years | 20 | 3 | 4 | 2 | 3 |
+| Time to first value | 10 | 4 | 4 | 2 | 2 |
+| Support and maintenance | 20 | 4 | 3 | 2 | 2 |
+| Data rights and privacy | 10 | 3 | 3 | 5 | 2 |
+| Exit path | 10 | 3 | 3 | 4 | 2 |
+| Risk | 5 | 3 | 3 | 2 | 3 |
+| **Weighted score** | **100** | **3.25** | **3.60** | **3.05** | **2.55** |
+
+The scores are less important than the conversation. A custom build wins on fit and control. It loses on cost, support and risk. The library has no IT staff, so the support score matters more than the fit score. A configured product may be the better first step, with a custom extension only if the workflow proves to be the differentiator.
+
+A decision record:
+
+```markdown
+# ADR-001: Use a configured booking product for the first release
+
+## Context
+The library needs reservations, deposits, reminders and a volunteer desk
+view. It has no IT staff and a limited annual budget. The workflow is
+close to standard.
+
+## Decision
+Configure an existing booking product and add a small integration for
+council asset IDs. Do not build a custom reservation system in the first
+release.
+
+## Options considered
+- Buy and configure a booking product
+- Build a custom system
+- Use a low-code platform
+- Keep the manual process with a shared calendar
+
+## Consequences
+Faster launch and lower support burden. Less control over the interface
+and a dependency on the vendor's roadmap. The deposit workflow must be
+tested against the treasurer's reconciliation.
+
+## Evidence
+Two vendor demonstrations, a three-year cost estimate, a reference call
+with a similar organisation and a prototype of the asset-ID integration.
+
+## Reopen if
+The vendor cannot support deposits, the annual cost exceeds the budget,
+or the volunteer workflow requires more than three workarounds.
+```
+
+## Business Connection
+
+Option analysis is where analysis meets procurement. A team that cannot compare options will default to the loudest request or the most familiar technology.
+
+AI changes the option space in two directions. It makes custom builds cheaper to attempt, which can tempt a team to build what it should buy. It also makes vendor products harder to compare, because every product now claims AI. The criteria should focus on the work, the evidence and the exit, not the feature list.
+
+## Practice Exercises
+
+**Exercise 8.1 (Level 1).** List four realistic options for the tool library, including keeping the manual process.
+
+**Exercise 8.2 (Level 2).** Choose five evaluation criteria and assign weights. Explain each weight in one sentence.
+
+**Exercise 8.3 (Level 3).** Score three options against your criteria and calculate the weighted result. Identify the assumption the decision is most sensitive to.
+
+**Exercise 8.4 (Level 4).** Write an ADR for a real decision in your project, including the options rejected and the conditions that would reopen it.
+
+**Exercise 8.5 (Level 5).** Compare a hosted AI service with a custom or rules-based alternative. Include evaluation, monitoring, privacy, provider change and total cost over three years.
+
+## Chapter Summary
+
+- Options include buy, configure, build, extend, manual process and AI service.
+- A decision matrix makes trade-offs visible but does not remove judgement.
+- Weights reflect what the organisation values, not what the vendor sells.
+- Test whether the decision is stable under a reasonable change in assumptions.
+- An ADR records the context, decision, consequences and reopening conditions.
+
+## Reflection
+
+Before moving on, ensure you:
+
+- [ ] Listed at least four genuinely different options
+- [ ] Derived criteria from the requirements
+- [ ] Recorded the weights before scoring
+- [ ] Tested the decision against a changed assumption
+- [ ] Wrote an ADR with a reopening condition
+
+## Your Learning Journal
+
+1. Which option looked cheapest at first and most expensive over time?
+2. What did the weighted matrix reveal that the discussion had missed?
+3. What would have to change for you to reopen the decision?
+
+## Next Steps
+
+The decision is recorded. The next chapter connects requirements, models, decisions and evidence so the whole system can be defended and changed without losing the thread.

@@ -1,0 +1,177 @@
+# The Brief Is Not the System {#sec-brief}
+
+> "We need an app so people can book tools." That is a request. An agent can build it before lunch. The system is still unknown.
+
+## The Concept First
+
+The tool library coordinator has a problem she can feel but has not described. Members ring during opening hours and ask whether the ladder is free. Volunteers write reservations in a paper diary, then forget to check the group chat. Two people sometimes promise the same drill. At the end of the month, the treasurer cannot tell which deposits were refunded.
+
+The coordinator's request is a solution: an app. It may be the right solution. It is not yet a problem statement.
+
+Analysis begins by separating three things:
+
+- **The request**: what someone thinks they want built.
+- **The problem**: what is going wrong in the current work.
+- **The outcome**: what would be better if the problem were solved.
+
+The request can change. The problem should survive a change of solution. If the only thing you know is "build an app", you cannot tell whether a shared calendar, a revised procedure or an off-the-shelf booking service would serve the library better.
+
+A problem statement describes the gap between the current state and the intended future state. The current state records what happens now, who does it, where it breaks and what it costs. Use numbers where you can: reservations a week, double bookings a month, volunteer hours on the phone, tools missing from the shelf. The future state names the outcome in the language of the organisation, not the software.
+
+An output is a thing delivered: an app, a dashboard, a report. An outcome is a change in the work: fewer double bookings, faster handover, fewer unanswered calls. Projects often measure outputs because they are easy to count. A delivered app is not evidence that the problem changed. The library could have a beautiful booking app and still double-book the ladder because the volunteers keep a parallel paper diary.
+
+AI makes this distinction harder to hold. A capable agent can turn a vague request into a polished brief, a data model and a working prototype in one session. The artefact looks like analysis. Often it is the request, restated with more confidence.
+
+::: {.callout-warning title="The AI failure mode"}
+An agent asked to "write the problem statement" will produce a fluent statement from the request alone. It cannot know the lost reservations, the volunteer workaround or the treasurer's reconciliation problem unless you supply them. Treat the first draft as a hypothesis to test, not a finding.
+:::
+
+## Understanding Through a Doctor's Visit
+
+A patient arrives and asks for antibiotics. The doctor could write the prescription and finish the consultation in two minutes. The request is clear. The problem is not.
+
+The doctor asks what changed, when it started, what makes it worse, what the patient has already tried and what else is going on. The answers may point to a bacterial infection, a viral illness, a side effect or something unrelated. The request was a solution. The diagnosis is the problem statement.
+
+Systems analysis works the same way. The client arrives with a solution because solutions are easier to describe than problems. AI has made solutions cheaper to produce, which makes the diagnosis more important, not less. A wrong prescription is still wrong when it arrives in seconds.
+
+## Discovering the Problem with Your AI Partner
+
+### Exploration 1: Interrogate the Request
+
+Give your AI partner the request and ask it to separate the stated solution from the underlying problem. Ask for questions, not answers.
+
+```text
+Here is a client request: "We need an app so people can book tools."
+List every question you would need answered before you could describe the
+problem. Do not propose a solution. Group the questions by what they ask
+about: the work today, the people, the evidence, the constraints or the
+definition of better.
+```
+
+A useful answer will ask about the current process, the frequency of failure, the people involved, the cost of the workaround and what the client would accept as success. If the AI starts designing screens, stop it. You asked for diagnosis.
+
+### Exploration 2: Generate Rival Problems
+
+Ask for several problem statements that would all explain the same request. The differences expose what you have not confirmed.
+
+```text
+Here is the request and what I know about the current work:
+[paste your notes]
+
+Write three rival problem statements that could each explain why the
+client asked for an app. For each one, name the evidence that would
+support it and the evidence that would rule it out. Do not choose one.
+```
+
+If all three read the same, you have not given the model enough evidence. If they diverge, you have a research plan.
+
+### Exploration 3: Build an Assumptions Log
+
+An assumption is a belief that needs a check. Ask the AI to find the assumptions hidden in a draft problem statement.
+
+```text
+Here is my draft problem statement:
+[paste it]
+
+List every assumption it makes about people, data, policy, money,
+technology or support. For each one, write the question that would test it
+and name the person most likely to know the answer.
+```
+
+Keep the log beside the problem statement. An assumption that fails changes the scope. An unknown that nobody has decided is not a requirement.
+
+### Exploration 4: The AI Feature Trap
+
+If the request is "add AI", the same method applies. An AI feature is a solution. Ask what decision or task changes, who is accountable for the decision, what evidence the model needs and what happens when it is wrong.
+
+```text
+The client wants an AI assistant to answer tool availability questions.
+Write the problem statement without naming AI. What task changes? Who
+does it now? What would better look like? What would the assistant need
+to know? What must a human still decide?
+```
+
+If the answer is "the assistant answers questions", you have restated the feature. Keep asking until you reach the work.
+
+## From Concept to Practice
+
+A problem statement can be one paragraph:
+
+> Volunteers spend six to eight hours a week answering availability questions and reconciling the paper diary. Members cannot see whether a tool is free, and two people are occasionally promised the same item. The library needs a single reservation record that members and volunteers can trust, with a process for deposits and overdue returns that the treasurer can reconcile.
+
+Notice what is missing: a database, a framework, a mobile app or a model. Those are design choices. The statement leaves room for them.
+
+Use this template:
+
+```markdown
+# Problem statement: [project]
+
+## Current state
+Who does the work, what happens, where it breaks and what it costs.
+
+## Future state
+What would be better, for whom, and how we would notice.
+
+## Request
+What the client asked for, in their words.
+
+## Assumptions
+Beliefs that need a check, each with an owner.
+
+## Unknowns
+Questions nobody has answered yet.
+
+## AI-added claims
+Anything an assistant introduced that is not supported by the evidence.
+```
+
+Test the statement with one question: could two different solutions satisfy it? If not, you have smuggled a design into the problem.
+
+## Business Connection
+
+Organisations pay for outputs and expect outcomes. The gap between them is where projects fail quietly. A system can be delivered on time, pass acceptance and still leave the work unchanged because the analysis never named the work.
+
+AI raises the cost of a bad problem statement. A traditional project might spend weeks discovering it was solving the wrong problem. An AI-assisted team can build the wrong system in days, integrate it and call the speed progress.
+
+A clear problem statement also protects the team from solution shopping. When a vendor demonstrates a product, the team can ask which problem it solves and what evidence would show the problem changed. That is a stronger position than comparing feature lists.
+
+## Practice Exercises
+
+**Exercise 1.1 (Level 1).** Take the coordinator's request and write the current state, future state, request, two assumptions and two unknowns.
+
+**Exercise 1.2 (Level 2).** Ask an AI to write three rival problem statements for the tool library. For each, name one piece of evidence that would confirm it and one that would rule it out.
+
+**Exercise 1.3 (Level 3).** Find a real project request from your work or study. Rewrite it as a problem statement with no technology named. Ask a colleague whether two different solutions could satisfy it.
+
+**Exercise 1.4 (Level 4).** Take an AI-generated project brief. Mark every claim that could not have come from the request. Identify which of those claims are assumptions and which are inventions.
+
+**Exercise 1.5 (Level 5).** Write a problem statement for an AI-enabled system. Separate the task the model supports, the decision a human owns, the evidence the model needs and the fallback when it is wrong.
+
+## Chapter Summary
+
+- A request is a proposed solution; the problem is the gap in the work.
+- A problem statement records the current state, the future state and the cost of the gap.
+- Outputs are delivered things; outcomes are changes in the work.
+- AI can draft a plausible problem statement from almost nothing. The evidence still has to come from the work.
+- Assumptions and unknowns belong in the record, not inside the requirements.
+
+## Reflection
+
+Before moving on, ensure you:
+
+- [ ] Wrote the client's request in their own words
+- [ ] Described the current state with at least one measurable cost
+- [ ] Named the outcome without naming a technology
+- [ ] Recorded assumptions and unknowns separately
+- [ ] Marked any AI-added claim that lacks evidence
+- [ ] Tested whether two different solutions could satisfy the statement
+
+## Your Learning Journal
+
+1. Which part of the request turned out to be a solution rather than a problem?
+2. What assumption would be most expensive if it were wrong?
+3. Where did the AI sound most confident, and what evidence was missing?
+
+## Next Steps
+
+The problem statement names a gap. The next chapter identifies who experiences it, who can block it and who has to live with the answer.

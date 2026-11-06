@@ -1,0 +1,182 @@
+# Scope, Context and Constraints {#sec-scope}
+
+> Scope is not a list of features. It is a decision about what the system is responsible for, and what it is allowed to decide.
+
+## The Concept First
+
+A context diagram shows the system as one box and the external entities it exchanges information with. It deliberately hides the inside. That is the point: before you decompose the system, agree what is inside it.
+
+For the tool library, the system might exchange information with:
+
+- members, through a booking interface
+- volunteers, through a desk view
+- a payment provider, for deposits and refunds
+- an email or SMS service, for confirmations and reminders
+- the council's asset register, if tools are council property
+- the insurer's records, if condition or incident reports are required
+
+Each arrow is a flow of information or material. "Member requests reservation" is a flow. "System sends reminder" is a flow. "Tool" is not a data flow unless the system tracks the physical item.
+
+If the system includes an AI assistant, the context changes. The assistant may exchange prompts with a model provider, read a knowledge base, write an audit log and hand a recommendation to a volunteer. The model provider becomes an external entity. The human reviewer becomes part of the boundary, not an implementation detail.
+
+A scope statement has three lists:
+
+**In scope.** The work the system will do. "Record reservations, loans, returns, deposits and condition checks for tools owned by the library."
+
+**Out of scope.** The work it will not do, even if related. "Repair scheduling, volunteer rostering, membership payments and the council's asset register."
+
+**Not now.** Work deferred to a later decision. "Damage charges, waitlists and an AI assistant may be added after the first release."
+
+The third list matters. "Out of scope" sounds permanent and can start an argument. "Not now" records intent without promising a date.
+
+## Understanding Through a Shared Kitchen
+
+A community hall has a shared kitchen. One group uses it for a weekly lunch. Another runs a cooking class. A third hires it for events. The kitchen works because everyone agrees what is inside the room and what is borrowed from elsewhere.
+
+The hall committee asks for a booking system. The scope question is not "what screens should it have?" It is "what does the system own?" Does it own the room, the equipment, the cleaning rota, the key cabinet, the fridge contents and the waste collection? Each one adds an interface and a responsibility.
+
+If the booking system also promises to answer questions about allergens, it now depends on recipe data, a qualified reviewer and a policy for liability. The screen is small. The boundary is not.
+
+AI makes the boundary harder to see because the model can appear to own a task. A volunteer asks "Is the ladder free?" and the assistant answers. Did the system own the answer, or did it own only a draft that a volunteer confirms? The scope statement must say.
+
+## Discovering Scope with Your AI Partner
+
+### Exploration 1: Draw the Context Without the Inside
+
+Ask the AI to produce a context inventory, not a design.
+
+```text
+Here is the problem statement for a community tool library:
+[paste it]
+
+List every external entity the system must exchange information with.
+For each one, name the flow, the direction, who owns the external entity
+and what the system should do when that entity is unavailable.
+Do not describe screens, databases or internal components.
+```
+
+The last instruction keeps the model at the boundary. If it starts designing tables, it has crossed into solution design before the scope is agreed.
+
+### Exploration 2: Test the Boundary
+
+Take a proposed feature and ask where it sits.
+
+```text
+The committee wants the system to answer availability questions with an
+AI assistant. For each activity below, decide whether it is in scope,
+out of scope or not now, and explain the boundary:
+- read the reservation diary
+- decide whether a tool is available
+- promise the tool to a member
+- suggest an alternative tool
+- override a volunteer's decision
+- log the conversation
+- monitor answer quality
+```
+
+The exercise exposes a common failure. "Answer questions" sounds like one feature. It contains reading, deciding, promising, explaining and monitoring. Each has a different owner and risk.
+
+### Exploration 3: Find Hidden Dependencies
+
+Ask the AI to list what the system would depend on if the AI assistant were added.
+
+```text
+An AI assistant will answer tool availability questions from the
+reservation database and a policy document. List every dependency this
+creates: data quality, model provider, prompt changes, evaluation,
+logging, privacy, cost, latency, human review and fallback.
+For each, state what happens if it fails.
+```
+
+A dependency that fails silently is a scope hole. A model that returns a confident wrong answer is not "unavailable". It is a failure mode that needs a boundary decision.
+
+### Exploration 4: Write the Not Now List
+
+The "not now" list is a design tool. Ask the AI to argue for deferral.
+
+```text
+Here is the first release scope:
+[paste it]
+
+List the features people are likely to request during the build.
+For each, write the smallest version that could wait, the risk of adding
+it now and the condition that would justify adding it later.
+```
+
+This gives the team a defensible answer when the first "while you're here" request arrives.
+
+## From Concept to Practice
+
+A context diagram is simple to draw and easy to fake. Use a table when the diagram would hide the hard parts.
+
+| Interface | Direction | What crosses | Owner | Failure behaviour |
+|---|---|---|---|---|
+| Payment provider | Out and back | Deposit, refund, status | Treasurer | Reservation held; payment marked pending |
+| Email service | Out | Confirmation, reminder | Coordinator | Booking valid; message retried or shown at desk |
+| Council asset register | In | Asset ID, ownership | Council | Manual entry fallback |
+| Desk browser | In and out | Reservation, loan, return | Volunteers | Paper fallback for the day |
+| Model provider | Out and back | Prompt, completion, usage | Vendor | Assistant unavailable; desk uses the reservation list |
+| Knowledge base | In | Policy, tool guidance | Coordinator | Assistant refuses rather than guesses |
+| Human reviewer | In | Confirmation, correction | Volunteer | Recommendation is advisory until confirmed |
+
+For each interface, ask what happens when it is unavailable. A dependency that fails silently is a scope hole.
+
+Constraints are limits the solution must respect. They are not preferences.
+
+- **Budget**: the library can spend a fixed amount a year on software and model usage.
+- **Time**: the system must be ready before the spring tool drive.
+- **Policy**: deposits may need council approval.
+- **Legacy**: the council's asset IDs must be used.
+- **Accessibility**: the booking path must meet the organisation's accessibility standard.
+- **Data**: personal information must be minimal, and model prompts must not leak it.
+- **Support**: the system must be maintainable by a volunteer with browser-level skills.
+- **Environment**: the desk has an old laptop and unreliable Wi-Fi.
+- **Model terms**: the provider may change the model, price or data policy.
+
+Constraints narrow the option space. They belong in the analysis, not in a footnote after the design is chosen.
+
+## Business Connection
+
+Scope failures are expensive because they are discovered late. A system that quietly owns a decision, a data source or a support obligation will be blamed when that responsibility fails.
+
+AI adds a new version of the problem. The assistant can appear to take responsibility for an answer while the organisation remains legally and professionally responsible. A scope statement that says "the assistant answers availability questions" is too vague to govern. It needs to say who confirms, who can override, what is logged and what happens when the model is wrong.
+
+## Practice Exercises
+
+**Exercise 3.1 (Level 1).** Draw a context diagram for the tool library with four external entities and their flows. Mark one interface that fails silently today.
+
+**Exercise 3.2 (Level 2).** Write an in scope, out of scope and not now list for the first release. Include the AI assistant in one of the lists and justify the choice.
+
+**Exercise 3.3 (Level 3).** Add the AI assistant to the context diagram. Identify every new external entity, data flow and human review point.
+
+**Exercise 3.4 (Level 4).** Write the failure behaviour for each AI dependency: model unavailable, model slow, model wrong, model policy changed, data missing. State what the user sees and who is responsible.
+
+**Exercise 3.5 (Level 5).** Take a project with an existing scope statement. Find one responsibility that is implied but not written down. Rewrite the boundary so the responsibility has an owner and a failure behaviour.
+
+## Chapter Summary
+
+- Scope is a decision about responsibility, not a feature list.
+- Context diagrams show flows across the boundary and hide the inside.
+- AI adds model providers, data sources, human reviewers and monitoring to the context.
+- Every external interface needs an owner and a failure behaviour.
+- "Not now" is a useful third list between in scope and out of scope.
+
+## Reflection
+
+Before moving on, ensure you:
+
+- [ ] Drew a context diagram with flows rather than internal features
+- [ ] Wrote in scope, out of scope and not now lists
+- [ ] Gave every external interface an owner and a failure behaviour
+- [ ] Decided what the AI assistant may decide, draft or only suggest
+- [ ] Named the constraint that would change the design if it changed
+
+## Your Learning Journal
+
+1. Which boundary decision was hardest to make, and who owns it?
+2. Where could the AI appear to own a responsibility the organisation still holds?
+3. What "not now" item is most likely to be pulled into the first release?
+
+## Next Steps
+
+The boundary is agreed. The next chapter turns the work inside it into functional requirements that describe tasks, rules and failure paths.

@@ -1,0 +1,13 @@
+# Copyright {.unnumbered}
+
+**Frame the System, Guide the AI: Systems Analysis and Design in the AI Era**
+
+© 2026 Michael Borck.
+
+Book content is licensed under [Creative Commons Attribution 4.0 International (CC BY 4.0 International)](https://creativecommons.org/licenses/by/4.0/).
+
+These grants cover material the author has authority to license. Separately credited third-party material retains its stated terms.
+
+The examples are fictional. Any resemblance to a real organisation is coincidental.
+
+**ISBN:** (to be assigned)

@@ -1,0 +1,15 @@
+# About the Author {.unnumbered}
+
+**Michael Borck** is a software developer and educator working at the intersection of human expertise and artificial intelligence. He teaches applied AI, systems analysis and AI in business, and runs professional masterclasses on judgement with AI.
+
+His books include *Conversation, Not Delegation*, *The Human Edge*, *Prove, Don't Persuade*, *Substantiate, Don't Assume*, *Speak Software*, *Build Web, Guide AI* and *Build AI, Understand AI*.
+
+*Frame the System, Guide the AI* applies the same habits to analysis and design. The book treats AI as a fast, confident drafting partner and the analyst as the person who frames the problem, gathers evidence, sets the boundary and defends the decision.
+
+---
+
+**Connect**
+
+- [GitHub projects](https://github.com/michael-borck)
+- [Free book collection](https://books.borck.education)
+- [LinkedIn](https://linkedin.com/in/michaelborck)

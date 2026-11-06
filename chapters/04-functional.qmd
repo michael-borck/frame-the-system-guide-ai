@@ -1,0 +1,189 @@
+# Functional Requirements: Tasks and Rules {#sec-functional}
+
+> A feature describes what the system has. A functional requirement describes what someone can do with it, and what happens when the happy path fails.
+
+## The Concept First
+
+Functional requirements describe the behaviour the system must provide. They are written from the point of view of an actor trying to achieve a goal.
+
+A useful functional requirement names:
+
+- the actor
+- the trigger that starts the task
+- the information the actor needs
+- the normal flow
+- the exceptions that can interrupt it
+- the state the system is in afterwards
+
+A use case is a compact way to hold that information. It is not a diagram language. It is a structured story that a builder, a tester and a client can all read.
+
+Business rules are different. They constrain behaviour: a member may borrow at most three tools, a deposit is required above a value threshold, a tool cannot be reserved while it is under maintenance. A rule can apply across many use cases. Keep rules separate so they can be changed without rewriting every task.
+
+For AI-enabled systems, the boundary between behaviour and rule matters more. "The assistant recommends an alternative tool" is functional behaviour. "The assistant must not promise a tool is available" is a rule. "A volunteer confirms before the reservation is held" is a human decision point. If you mix them into "the AI handles availability", you have written a wish.
+
+::: {.callout-warning title="The AI failure mode"}
+Do not write requirements as model hopes: "the AI will understand the request", "the model will know which tool is best", "the assistant will handle edge cases". A model is not an actor with judgement you can rely on. Write the observable behaviour, the input, the output and the fallback.
+:::
+
+## Understanding Through a Restaurant Order
+
+A restaurant menu is a list of things the kitchen can produce. It is not the same as the service a customer receives.
+
+The customer arrives, asks for a table, orders, eats and pays. The normal flow is easy to describe. The exceptions are where the system lives: the dish is sold out, the customer has an allergy, the card is declined, the kitchen runs late, the order is wrong.
+
+A menu that says "we serve food" is not a functional requirement. A requirement says who can order, what they can order, what the kitchen confirms, what happens when an item is unavailable and what the customer is told.
+
+AI assistants often arrive as a menu item: "add a chatbot". The analysis question is what task the customer is trying to complete, what the assistant is allowed to confirm and what happens when it does not know.
+
+## Discovering Functional Requirements with Your AI Partner
+
+### Exploration 1: Turn Goals into Use Cases
+
+Ask the AI to produce use cases from the problem statement, not screens.
+
+```text
+Here is the problem statement and scope for a community tool library:
+[paste them]
+
+Write the use cases implied by the work. For each one, name the actor,
+the goal, the trigger, the information required, the normal flow and at
+least two exceptions. Do not describe screens or database tables.
+```
+
+A good answer will include reserve, collect, return, cancel, extend and report a problem. If every use case has only a happy path, the model has described a demo, not a system.
+
+### Exploration 2: Generate the Exception List
+
+Exceptions are the requirements people forget to ask for. Ask for them directly.
+
+```text
+For the use case "reserve a tool", list every exception a volunteer
+would have to handle: unavailable, maintenance, expired membership,
+unpaid deposit, duplicate reservation, no contact details, tool missing
+from the shelf, member cancels, volunteer overrides. For each, write the
+expected system response and who decides.
+```
+
+The output is a test list. It is also a scope negotiation. Every exception needs an owner.
+
+### Exploration 3: Separate Behaviour from Business Rules
+
+Ask the AI to classify statements.
+
+```text
+Here is a draft requirements list:
+[paste it]
+
+Classify each statement as a functional requirement, a business rule, a
+non-functional requirement, an assumption or a design decision. Rewrite
+anything that mixes two categories into separate statements.
+```
+
+This is a useful check on your own writing. "The system must allow members to reserve tools if they have no overdue items and their deposit is paid" contains a behaviour and two rules. Split them.
+
+### Exploration 4: Specify the Human Decision
+
+For an AI feature, write the use case around the human decision, not the model call.
+
+```text
+The tool library wants an assistant that suggests an alternative when a
+requested tool is unavailable. Write the use case with the volunteer as
+the actor. Include the assistant's recommendation, the evidence shown,
+the volunteer's decision, the override, what is logged and what happens
+when the assistant is unavailable.
+```
+
+If the use case still reads "the assistant decides", the human has been designed out.
+
+## From Concept to Practice
+
+A use case brief can fit on one page.
+
+```markdown
+# Use case: Reserve a tool
+
+**Actor:** Member
+**Goal:** Hold an available tool for collection.
+**Trigger:** Member selects a tool and a collection date.
+**Preconditions:** Member is active; tool is in the catalogue.
+
+## Main flow
+1. Member selects a tool and date.
+2. System checks availability and membership status.
+3. System shows the deposit and collection conditions.
+4. Member confirms.
+5. System records the reservation and sends a confirmation.
+6. Volunteer sees the reservation at the desk.
+
+## Exceptions
+- Tool unavailable: offer waitlist or alternative.
+- Deposit unpaid: hold the reservation for 24 hours.
+- Duplicate reservation: show the existing booking.
+- Tool under maintenance: block reservation and show the reason.
+- Assistant unavailable: desk uses the reservation list.
+
+## Postconditions
+Reservation is recorded, or the member is told why it could not be.
+```
+
+The exceptions are not appendix material. They are the requirements that decide whether the system is usable on a bad day.
+
+Business rules sit beside the use case:
+
+```markdown
+# Business rules
+
+- BR-01: A member may hold at most three reservations at once.
+- BR-02: A deposit is required for tools valued above $200.
+- BR-03: A tool under maintenance cannot be reserved.
+- BR-04: A volunteer may override availability with a recorded reason.
+- BR-05: The assistant may recommend, but may not confirm, a reservation.
+```
+
+Notice BR-05. It defines the limit of the AI's authority in one sentence. That sentence is more useful than a page about responsible AI.
+
+## Business Connection
+
+Functional requirements are where business intent becomes observable behaviour. A rule that lives only in a policy document will be interpreted differently by every volunteer and every model.
+
+AI features need explicit authority. Who may promise, confirm, refuse, override or escalate? If the answer is "the assistant", the organisation has delegated a decision without deciding it. If the answer is "the volunteer, with a recommendation", the workflow and the evidence need to be designed.
+
+## Practice Exercises
+
+**Exercise 4.1 (Level 1).** Write the main flow and two exceptions for "return a tool".
+
+**Exercise 4.2 (Level 2).** Turn three statements from a project brief into use cases. Name one exception for each.
+
+**Exercise 4.3 (Level 3).** Write five business rules for the tool library. For each, name the use case it constrains and the person who owns it.
+
+**Exercise 4.4 (Level 4).** Write the use case for an AI assistant that recommends alternatives. Make the human decision, the evidence and the fallback explicit.
+
+**Exercise 4.5 (Level 5).** Take an existing feature request and classify every sentence as behaviour, rule, quality, assumption or design decision. Rewrite the mixed statements.
+
+## Chapter Summary
+
+- Functional requirements describe observable behaviour from an actor's point of view.
+- Use cases hold the actor, goal, trigger, flow, exceptions and postcondition.
+- Business rules constrain behaviour and belong beside the use cases.
+- AI features need explicit authority: recommend, confirm, refuse, override, escalate.
+- Exception paths are requirements, not edge cases.
+
+## Reflection
+
+Before moving on, ensure you:
+
+- [ ] Wrote at least one use case with a normal flow and two exceptions
+- [ ] Separated business rules from behaviour
+- [ ] Named the human decision in every AI feature
+- [ ] Defined what happens when the model is unavailable or wrong
+- [ ] Checked that no requirement relies on the model "understanding" the context
+
+## Your Learning Journal
+
+1. Which exception changed the design most?
+2. Where did a business rule hide inside a feature request?
+3. What decision did the AI feature try to take from a person?
+
+## Next Steps
+
+The behaviour is defined. The next chapter adds the qualities the system must have while it behaves: speed, safety, privacy, accessibility and trust.

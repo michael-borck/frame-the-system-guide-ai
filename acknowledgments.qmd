@@ -1,0 +1,9 @@
+# Acknowledgments {.unnumbered}
+
+This book grew out of teaching systems analysis and design to people who will work with AI assistants for the rest of their careers. The questions that shaped it came from students and practitioners who could generate a system faster than they could explain why it should exist.
+
+The running case is fictional. The pattern is not. Community organisations, small businesses and public agencies all describe a version of the tool library: a paper process, a spreadsheet, a chat group and a request for an app.
+
+Thanks to the people who reviewed early drafts and pushed back on the parts that sounded like a textbook from 2004. The book keeps the parts of analysis that still earn their place: framing, evidence, models and decisions. It drops the ceremony that only made sense when change was slow.
+
+AI assistants were used as drafting and review partners. They produced fluent errors on schedule, which is why the book treats evaluation and traceability as part of the method. The judgement and the responsibility for every claim remain the author's.

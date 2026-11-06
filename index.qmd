@@ -1,0 +1,51 @@
+# Frame the System, Guide the AI {.unnumbered}
+
+> A client asks for an app. An agent can produce a plausible one before lunch. Neither event tells you what problem you are solving.
+
+## Who this is for
+
+This book is for people who have to turn a messy business request into a system that can be built, checked, handed over and maintained. That includes business analysts, product owners, project leads, consultants, students and developers who are tired of building the wrong thing competently.
+
+It assumes you can use an AI assistant to explore ideas, draft artefacts and inspect code. It does not assume you can write code. The judgement in this book is yours.
+
+## The shift
+
+AI changes the economics of analysis and design. It can draft a problem statement, invent stakeholders, produce a data model, compare options and generate a working prototype from a short brief. That speed is useful. It also makes it easier to arrive at a confident answer without doing the analysis.
+
+The analyst's job moves toward four things:
+
+- framing the problem before the build starts
+- collecting evidence from the people who do the work
+- making requirements and decisions checkable
+- keeping a record that explains what the system does, what it depends on and what remains unknown
+
+Those four things matter whether the system is ordinary software or software with an AI model inside it.
+
+## What you will build
+
+By the end, you will have a set of artefacts that fit together:
+
+- a problem statement and scope boundary
+- a stakeholder map and a context diagram
+- functional and non-functional requirements
+- use cases, a data model and a state model where they answer a question
+- an option paper and a decision record
+- a traceability matrix from requirement to evidence
+- an AI system checklist covering data, evaluation, human oversight and monitoring
+- a handover pack that names what is still unknown
+
+The artefacts are not the point. The point is being able to explain why the system is shaped the way it is, what it must do, what it will not do, and how anyone would know it works.
+
+## The running case
+
+A community tool library lends drills, ladders, sewing machines and garden tools. Volunteers run the desk. Members reserve tools online, collect them and return them. The current system is a paper diary, a group chat and a spreadsheet.
+
+The coordinator says: "We need an app so people can book tools."
+
+Halfway through the book, the committee asks for an AI assistant that can answer availability questions and suggest alternatives. That request is both a feature and a new system design problem: it needs data, evaluation, human oversight, a fallback and a way to tell when the answers stop being good.
+
+## How to read it
+
+Read the chapters in order the first time. Each chapter ends with an AI exploration, a practice task, a summary and a short reflection. The practice tasks use the tool library, but you can substitute your own project.
+
+The book is deliberately short on notation and long on decisions. A model is useful when it changes what someone does next. A diagram that only decorates the document is a liability with rounded corners.

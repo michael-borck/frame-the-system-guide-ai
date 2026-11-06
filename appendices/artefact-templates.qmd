@@ -1,0 +1,145 @@
+# Artefact Templates {#sec-templates}
+
+Use these templates as starting points. Delete any field that does not change a decision.
+
+## Problem statement
+
+```markdown
+# Problem statement: [project]
+
+## Current state
+Who does the work, what happens, where it breaks and what it costs.
+
+## Future state
+What would be better, for whom, and how we would notice.
+
+## Request
+What the client asked for, in their words.
+
+## Assumptions
+Beliefs that need a check, each with an owner.
+
+## Unknowns
+Questions nobody has answered yet.
+
+## AI-added claims
+Anything an assistant introduced that is not supported by the evidence.
+```
+
+## Stakeholder table
+
+| Stakeholder | Goal | Pain today | Influence | Involvement | Decision owned |
+|---|---|---|---|---|---|
+| | | | | | |
+
+## Context and interfaces
+
+| Interface | Direction | What crosses | Owner | Failure behaviour |
+|---|---|---|---|---|
+| | | | | |
+
+## Use case
+
+```markdown
+# Use case: [name]
+
+**Actor:**
+**Goal:**
+**Trigger:**
+**Preconditions:**
+
+## Main flow
+1.
+
+## Exceptions
+-
+
+## Postconditions
+```
+
+## Quality scenario
+
+```markdown
+# Quality scenario: [name]
+
+**Source:**
+**Stimulus:**
+**Environment:**
+**Response:**
+**Measure:**
+**Evidence:**
+**Owner:**
+**Fallback:**
+```
+
+## Requirement record
+
+| ID | Requirement | Source | Check | Evidence | Owner |
+|---|---|---|---|---|---|
+| | | | | | |
+
+## Decision record
+
+```markdown
+# ADR-[number]: [decision]
+
+## Context
+
+## Decision
+
+## Options considered
+
+## Consequences
+
+## Evidence
+
+## Reopen if
+```
+
+## Traceability matrix
+
+| Goal | Requirement | Model | Decision | Check | Evidence |
+|---|---|---|---|---|---|
+| | | | | | |
+
+## AI register
+
+| Item | Version | Owner | Last reviewed | Evidence |
+|---|---|---|---|---|
+| Model | | | | |
+| Prompt | | | | |
+| Evaluation set | | | | |
+| Threshold | | | | |
+| Human review | | | | |
+| Incident log | | | | |
+
+## Handover pack
+
+```markdown
+# Handover: [system]
+
+## Accepted
+- Requirements verified
+- Known gaps
+
+## Run
+- Runbook
+- Support and escalation
+- Access and offboarding
+- Backup and restore
+
+## AI
+- Model and prompt versions
+- Evaluation and review
+- Fallback
+- Incident process
+- Provider change process
+
+## Measure
+- Baseline
+- Outcome measures
+- Review dates
+- Decision
+
+## Open questions
+```

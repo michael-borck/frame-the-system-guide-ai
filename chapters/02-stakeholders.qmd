@@ -1,0 +1,170 @@
+# Stakeholders and Their Work {#sec-stakeholders}
+
+> The person who asks for the system is rarely the only person who has to live with it. An AI can role-play the missing people. It cannot go and find them.
+
+## The Concept First
+
+A stakeholder is anyone who affects the system, is affected by it, or can stop it succeeding. That includes people who never appear in the requirements meeting.
+
+For the tool library:
+
+- **Members** want to know a tool is available before they travel.
+- **Volunteers** want fewer interruptions and a record they can trust.
+- **The coordinator** wants the desk to run with less chasing.
+- **The treasurer** wants deposits and refunds to reconcile.
+- **The insurer** wants evidence that loans and maintenance are controlled.
+- **The council** provides the venue and may have procurement rules.
+- **Accessibility users** need the booking path to work with keyboards, screen readers and small screens.
+- **The person who supports the system** may be a volunteer with no IT background.
+- **People who are not members yet** may be excluded by an email-only sign-up.
+
+If the system uses an AI model, the list grows. The model provider is a supply-chain stakeholder. The people whose data trains or prompts the model are data subjects. A human reviewer may own the final decision. Someone has to monitor quality after launch. None of those roles existed in the paper diary.
+
+A useful first cut separates primary, secondary and tertiary stakeholders. Primary stakeholders use the system or depend on its output. Secondary stakeholders build, support, regulate or supply it. Tertiary stakeholders are affected indirectly. The boundary is a judgement. Make the judgement visible so it can be revisited.
+
+## Understanding Through a Village Fete
+
+A village fete needs a committee, stallholders, volunteers, attendees, neighbours and the council. The committee chair asks for a website with a booking form. That request sounds simple until the analysis starts.
+
+The stallholders need to know where to park and when to arrive. Neighbours care about noise and road closures. Attendees need to know whether the event is accessible and whether dogs are allowed. The council needs a risk assessment and proof of insurance. The treasurer needs to reconcile stall fees. The volunteers need a rota that does not collapse when two people swap shifts.
+
+The chair speaks for the event but does not hold all the knowledge. A website designed only from the chair's description can be technically correct and practically useless. The missing stakeholders are not edge cases. They are the people who make the event work.
+
+An AI assistant can produce a convincing list of fete stakeholders in seconds. It can also invent a tidy consensus: stallholders want online booking, attendees want a mobile app, neighbours support the event. The list looks complete because it is fluent. The evidence is still missing.
+
+::: {.callout-warning title="The AI failure mode"}
+Synthetic stakeholders are useful for rehearsal, not evidence. A model asked to "represent a volunteer" will produce a plausible volunteer, not the person who worked last Tuesday. Never replace an interview with a simulation and call it research.
+:::
+
+## Discovering Stakeholders with Your AI Partner
+
+### Exploration 1: Find the Missing Voices
+
+Ask your AI partner to generate a stakeholder list from the problem statement, then look for the gaps.
+
+```text
+Here is my problem statement:
+[paste it]
+
+List the stakeholders who affect, are affected by or can block this
+system. Group them as primary, secondary and tertiary. For each one,
+name the goal they care about and the evidence they would use to judge
+success. Mark any group you think is commonly forgotten.
+```
+
+The last instruction matters. AI tends to list the obvious roles. The commonly forgotten groups are where the risk sits: support staff, accessibility users, people who avoid the system, and the people who inherit it after launch.
+
+### Exploration 2: Rehearse an Interview
+
+Use the AI to rehearse an interview with a stakeholder you have not met. Rehearsal is the point.
+
+```text
+Role-play a volunteer at a community tool library. I am the analyst.
+Answer only from the role I describe. Do not volunteer information.
+If I ask a vague question, give a vague answer. If I ask about your
+work, describe what happened last Tuesday.
+
+Role: You open the desk at 9am, manage the paper diary, answer the phone,
+check tools back in and chase overdue returns. You have no IT training.
+```
+
+Ask what happened last Tuesday. Ask about the last disagreement, the last double booking and the last time someone gave up. Then take those questions to a real person. The simulation helps you practise. It does not replace the source.
+
+### Exploration 3: Attack the Map for Blind Spots
+
+A stakeholder map can look complete and still be wrong. Ask the AI to attack it.
+
+```text
+Here is my stakeholder table:
+[paste it]
+
+Who is missing? Which group has high interest but low power, and whose
+needs might be ignored? Which group can block the project without being
+in the room? Where is there a conflict between two stakeholders, and who
+should decide it?
+```
+
+Record the conflicts. A map that shows only harmony is a map of the sponsor's hopes.
+
+### Exploration 4: Map the AI Supply Chain
+
+If the system includes a model, map the new dependencies.
+
+```text
+The tool library wants an AI assistant to answer availability questions.
+List the stakeholders added by this decision: model provider, data
+subjects, human reviewer, support owner, security, privacy, procurement
+and anyone affected by a wrong answer. For each, name the decision they
+own and the evidence they need.
+```
+
+A model provider that changes a hosted model without notice is a stakeholder with power and no seat at your desk. Put it on the map.
+
+## From Concept to Practice
+
+A stakeholder table is a working document, not a decoration.
+
+| Stakeholder | Goal | Pain today | Influence | Involvement |
+|---|---|---|---|---|
+| Member | Reserve a tool and know it will be there | Cannot see availability; wasted trips | Low individually, high collectively | Interviews, usability tests |
+| Volunteer | Run the desk without disputes | Paper diary and group chat disagree | High at the desk | Shadowing, co-design |
+| Coordinator | Reduce chasing and double bookings | No single record | High | Sponsor, decision-maker |
+| Treasurer | Reconcile deposits and refunds | No reliable transaction view | Medium | Requirements review |
+| Council | Meet venue and procurement rules | Unknown compliance burden | High | Constraint review |
+| Support volunteer | Fix problems after launch | No runbook or access model | Medium | Handover review |
+| Accessibility user | Complete the task without assistance | Unknown until tested | Low formally, high in evidence | Usability testing |
+| Model provider | Supply a working, stable service | Unknown roadmap and limits | High | Contract and change review |
+| Human reviewer | Catch wrong answers | No clear authority or time | Medium | Workflow design |
+
+The table is not complete. It is a prompt for the next question.
+
+Conflict is analysis. The coordinator wants fewer no-shows. Members want instant booking. Volunteers want the right to hold a tool for a regular. The treasurer wants a deposit on expensive items. The insurer wants a recorded condition check. Do not smooth the conflict into "the system should be flexible". Name the trade-off and the decision-maker.
+
+## Business Connection
+
+Most adoption failures are stakeholder failures, not technology failures. The system works, but the desk still uses the paper diary because nobody asked the volunteers what would make them switch. The dashboard exists, but the treasurer still reconciles by hand because the export does not match the bank statement.
+
+AI adds two familiar risks in a new form. The first is automation bias: people accept a model's answer because it is fluent and fast. The second is responsibility drift: everyone assumes someone else checks the output. Both are stakeholder design problems. Name the human who owns the decision, the evidence they see and the moment they are expected to intervene.
+
+Stakeholder analysis is also risk management. The council can stop the project through procurement. The insurer can impose a condition that changes the workflow. A model provider can change a price or a policy. The support volunteer can become a single point of failure. These are not edge cases to handle later. They are design constraints.
+
+## Practice Exercises
+
+**Exercise 2.1 (Level 1).** Add two stakeholders to the tool library table that are missing. For each, write one goal, one pain and one question you would ask.
+
+**Exercise 2.2 (Level 2).** Draw a power and interest map for the tool library. Place each stakeholder and write one engagement action for each quadrant.
+
+**Exercise 2.3 (Level 3).** Interview someone who does the work in a real process. Ask about the last three cases, including one that went wrong. Write the three stories as evidence, not opinions.
+
+**Exercise 2.4 (Level 4).** Identify one conflict between two stakeholders. Write both positions fairly, then name the decision-maker and the criterion they should use.
+
+**Exercise 2.5 (Level 5).** Map the stakeholders added by an AI feature. Include the model provider, data subjects, the human reviewer and the support owner. For each, state the decision they own and the evidence they need.
+
+## Chapter Summary
+
+- Stakeholders include users, builders, supporters, regulators and people affected indirectly.
+- AI features add model providers, data subjects, reviewers and monitoring owners.
+- Power and interest decide how to involve people, not whose needs matter.
+- Synthetic stakeholders are rehearsal tools, not evidence.
+- Conflicts are requirements for a decision, not noise to smooth away.
+
+## Reflection
+
+Before moving on, ensure you:
+
+- [ ] Named the primary, secondary and tertiary stakeholders
+- [ ] Spoke to at least one person who does the work
+- [ ] Recorded influence and involvement separately
+- [ ] Named a conflict and its decision-maker
+- [ ] Included at least one group that is commonly forgotten
+- [ ] Mapped the supply chain if the system uses a model
+
+## Your Learning Journal
+
+1. Which stakeholder was easiest to miss, and why?
+2. What did a story tell you that a feature request would not?
+3. Where could responsibility drift hide in an AI-enabled version of this system?
+
+## Next Steps
+
+The stakeholder map names who matters. The next chapter draws the boundary around what the system will and will not be responsible for, including the model.

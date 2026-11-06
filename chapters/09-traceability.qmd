@@ -1,0 +1,162 @@
+# Traceability and the Design Record {#sec-traceability}
+
+> If you cannot trace a decision to its evidence, you have a story, not a design.
+
+## The Concept First
+
+Traceability links the parts of the work so a change can be followed from intent to evidence.
+
+A useful chain looks like this:
+
+**Goal -> requirement -> model -> decision -> check -> evidence**
+
+The goal explains why the work exists. The requirement states what must be true. The model shows how the team reasoned about it. The decision records what was chosen. The check tests it. The evidence shows the result.
+
+Traceability is not a document for its own sake. It answers practical questions:
+
+- If this requirement changes, what else has to change?
+- If this test fails, which goal is at risk?
+- If the vendor changes the model, which claims become uncertain?
+- If an auditor asks why the system works this way, where is the answer?
+
+For AI-enabled systems, the chain includes more objects: the model version, the prompt version, the evaluation set, the threshold, the human review record and the incident log. A model change without a trace to the evaluation is a silent design change.
+
+## Understanding Through a Library Catalogue
+
+A library catalogue does not hold the books. It records what the library has, where each item came from, where it is, who can borrow it and what happened to it.
+
+When a book is reported missing, the catalogue helps answer the practical questions: which copy, which loan, which borrower, which return, which shelf. Without it, the library has shelves of books and no way to prove what it owns.
+
+A design record is the catalogue for the system. It does not contain the system. It records the decisions, the evidence and the links that make the system explainable.
+
+## Discovering Traceability with Your AI Partner
+
+### Exploration 1: Build the Chain
+
+Ask the AI to trace one requirement end to end.
+
+```text
+Here is the goal, a requirement, the model and the decision:
+[paste them]
+
+Build a trace from goal to evidence. Name the model that supports the
+requirement, the decision that implements it, the check that tests it and
+the evidence that proves the check ran. Mark any gap.
+```
+
+The gaps are the useful output. A requirement with no check, a decision with no requirement and a test with no owner are all traceability failures.
+
+### Exploration 2: Run a Change Impact
+
+Traceability earns its place when something changes.
+
+```text
+The library now wants a deposit for every reservation, not only for
+expensive tools. Starting from the requirement, trace the impact on
+business rules, use cases, data model, state model, decision record,
+checks and handover. List what must change and what can stay.
+```
+
+A change that touches every artefact is a sign the original boundary was too tight. A change that touches nothing is a sign the trace is incomplete.
+
+### Exploration 3: Trace the AI Claim
+
+AI features need a different trace.
+
+```text
+The assistant is claimed to answer availability questions correctly 95%
+of the time. Trace that claim to the model version, prompt version,
+evaluation set, metric, threshold, reviewer and review date. Mark any
+part of the claim that cannot be reproduced.
+```
+
+If the evaluation set is not versioned, the claim cannot be reproduced. If the model version is not recorded, the claim belongs to a model that may no longer be in use.
+
+### Exploration 4: Write the Design Record
+
+Ask the AI to turn the artefacts into a readable record.
+
+```text
+Create a design record index for this project. List the goals,
+requirements, models, decisions, checks, evidence, assumptions, open
+questions and AI dependencies. For each, name the owner and the last
+update. Do not invent entries.
+```
+
+The index is a map of what exists, not a substitute for the artefacts.
+
+## From Concept to Practice
+
+A traceability matrix can be small.
+
+| Goal | Requirement | Model | Decision | Check | Evidence |
+|---|---|---|---|---|---|
+| Reduce double bookings | FR-01: one active reservation per tool | State model | ADR-001 configured product | Reservation conflict test | Test run 2026-10-14 |
+| Treasurer can reconcile deposits | FR-07: deposit status visible | Data model | ADR-003 payment integration | Reconciliation scenario | Finance review notes |
+| Assistant does not promise a tool | BR-05: recommendation only | Decision model | ADR-004 human confirmation | Override and wrong-answer test | Evaluation report |
+| Assistant stays useful after launch | NFR-07: 95% on held-out cases | Provenance model | ADR-005 monthly evaluation | Monthly evaluation run | Dashboard and review log |
+
+The matrix is not the whole record. It is the index that tells you where to look.
+
+For AI systems, add a model and prompt register:
+
+```markdown
+# AI register
+
+| Item | Version | Owner | Last reviewed | Evidence |
+|---|---|---|---|---|
+| Model | vendor-model-2026-10 | Coordinator | 2026-10-14 | Evaluation report |
+| Prompt | v3 | Volunteer lead | 2026-10-14 | Prompt change note |
+| Evaluation set | eval-2026-10 | Volunteer lead | 2026-10-14 | 200 cases, 20 held out |
+| Threshold | 95%, no false available | Coordinator | 2026-10-14 | Acceptance record |
+| Human review | Volunteer confirms | Coordinator | 2026-10-14 | Workflow test |
+| Incident log | Tool library assistant | Support volunteer | Ongoing | Incident records |
+```
+
+The register answers the question every audit eventually asks: which system produced this output, and what evidence did you have at the time?
+
+## Business Connection
+
+Traceability reduces the cost of change and the cost of doubt. When a regulator, auditor or client asks why a decision was made, the record answers without reconstructing the meeting from memory.
+
+AI increases the need because the system can change without anyone editing the repository. A hosted model can be updated, a prompt can be edited in a console, a retrieval source can go stale. Without a register, the organisation cannot tell whether the system it tested is the system it is running.
+
+## Practice Exercises
+
+**Exercise 9.1 (Level 1).** Trace one requirement from goal to evidence. Mark any missing link.
+
+**Exercise 9.2 (Level 2).** Build a traceability matrix for five requirements in your project.
+
+**Exercise 9.3 (Level 3).** Run a change impact for a new business rule. List every artefact that must change.
+
+**Exercise 9.4 (Level 4).** Write the AI register for an AI feature, including model, prompt, evaluation set, threshold and review owner.
+
+**Exercise 9.5 (Level 5).** Take an AI claim from a vendor or internal team and try to reproduce it from the available evidence. State exactly what is missing.
+
+## Chapter Summary
+
+- Traceability links goals, requirements, models, decisions, checks and evidence.
+- The chain answers change, audit and failure questions.
+- AI systems also need model, prompt, evaluation and incident traces.
+- A claim that cannot be reproduced is not yet evidence.
+- The design record is an index to the artefacts, not a replacement for them.
+
+## Reflection
+
+Before moving on, ensure you:
+
+- [ ] Traced at least one requirement end to end
+- [ ] Identified a gap in the trace
+- [ ] Ran a change impact and found every affected artefact
+- [ ] Recorded the model, prompt and evaluation versions for an AI feature
+- [ ] Named the owner of each trace entry
+
+## Your Learning Journal
+
+1. Which gap in the trace was most surprising?
+2. What change would be hardest to trace today?
+3. Which AI claim in your project could not be reproduced from the record?
+
+## Next Steps
+
+The record explains the system. The final chapter hands it over with the operational evidence, the monitoring and the open questions intact.

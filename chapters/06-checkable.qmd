@@ -1,0 +1,169 @@
+# Requirements That Can Be Checked {#sec-checkable}
+
+> A requirement nobody can check is a preference with a version number.
+
+## The Concept First
+
+A checkable requirement states an observable condition and the evidence that would settle whether it holds. The evidence can be a test, an inspection, a measurement, a review or a recorded decision. The important part is that two people could reach the same conclusion without negotiating after the fact.
+
+Useful requirements share a set of qualities. They are:
+
+- necessary, because something in the problem depends on them
+- unambiguous, because a reader can picture the result
+- complete enough to act on
+- consistent with the other requirements
+- feasible within the constraints
+- verifiable
+- traceable to a source
+
+The words "fast", "easy", "secure", "robust", "flexible" and "user-friendly" are not requirements until they are tied to a condition and a measure. The same is true of "intelligent", "accurate" and "reliable" for an AI feature.
+
+A requirement can be checked by:
+
+- a test that runs and fails when the behaviour is wrong
+- an inspection of a document or artefact
+- a measurement against a threshold
+- a review by a named role
+- a demonstration with a defined script and evidence
+
+For probabilistic systems, one successful demonstration is not enough. The requirement needs a sample, a metric and a threshold. "The assistant answered correctly when I tried it" is an anecdote. "The assistant answered 95% of 200 held-out cases correctly, with no false availability claims" is evidence.
+
+## Understanding Through a Court Case
+
+A court does not accept a story because it is coherent. It asks what the evidence supports, who can be cross-examined and what would change the conclusion.
+
+A witness saying "I am certain" is not proof. A contemporaneous record, a chain of custody and a consistent account are stronger. The standard is not "the story sounds right". It is "the evidence meets the required standard".
+
+Requirements work the same way. A demo can be persuasive and still fail the standard. The analysis question is what evidence would settle the claim, who would review it and what would count as a failure.
+
+## Discovering Checkable Requirements with Your AI Partner
+
+### Exploration 1: Ambiguity Hunt
+
+Ask the AI to find words that do too much work.
+
+```text
+Here is a draft requirement:
+"The system should provide a secure, user-friendly booking experience
+that is fast on mobile."
+
+List every word or phrase that could be read in more than one way.
+For each, write the question that would expose the ambiguity and the
+observable evidence that would settle it.
+```
+
+The output is a list of requirements hiding inside one sentence. "Secure" might mean authentication, authorisation, encryption, audit logging or all four. "Fast" needs a device, a network and a percentile.
+
+### Exploration 2: Write Given, When, Then
+
+Turn a requirement into a scenario.
+
+```text
+Write acceptance criteria for "a member can reserve an available tool"
+using Given, When, Then. Include one happy path, one unavailable tool,
+one expired membership and one duplicate reservation.
+```
+
+A good set reads like a test script. The conditions are concrete. The expected result is observable. The exceptions are not left to the reader.
+
+### Exploration 3: Design the Evaluation Set
+
+For an AI feature, ask what evidence would be needed beyond a demo.
+
+```text
+The assistant answers tool availability questions. Design an evaluation
+set of 200 cases. Include common questions, rare tools, misspellings,
+ambiguous requests, questions that should be refused, and cases where
+the reservation data is stale. Define the metric, the threshold and the
+slice that matters most.
+```
+
+If the model helps design the set, keep a held-out portion it never sees. A test set used to tune the prompt is a rehearsal, not an exam.
+
+### Exploration 4: Attack the Evidence
+
+Ask the AI to find ways a passing result could be misleading.
+
+```text
+Here is my acceptance evidence for an AI feature:
+[paste it]
+
+List the ways this evidence could pass while the system still fails in
+use. Consider cherry-picked cases, leaked test data, stale data, unusual
+inputs, automation bias, missing human review and silent model changes.
+For each, name the additional evidence that would close the gap.
+```
+
+This is the AI equivalent of cross-examination. It is more useful than another round of demo polish.
+
+## From Concept to Practice
+
+A requirement record keeps the statement, the source, the check and the evidence together.
+
+| ID | Requirement | Source | Check | Evidence |
+|---|---|---|---|---|
+| FR-04 | A volunteer can override availability with a recorded reason | Volunteer interview | Test override flow and audit entry | Test run and sample log |
+| FR-09 | The assistant recommends an alternative but cannot confirm a reservation | Committee decision | Scenario with a wrong recommendation | Test run and review notes |
+| NFR-03 | The booking view is available 99.5% of desk hours | Coordinator | Monthly availability report | Monitoring dashboard |
+| NFR-07 | The assistant answers 95% of held-out availability cases correctly, with no false availability claim | Volunteer lead | Evaluation run on 200 cases | Evaluation report with failures |
+| NFR-09 | A member can complete a reservation by keyboard only | Accessibility review | Scripted keyboard walkthrough | Review record and recording |
+
+A requirement is not finished until the check is named. A check is not finished until the evidence is stored.
+
+For AI features, include the failure cases in the acceptance set:
+
+- the answer is correct but the data is stale
+- the answer is correct on common tools and wrong on restricted ones
+- the assistant refuses when it should answer
+- the assistant answers when it should refuse
+- the assistant reveals another member's information
+- the model provider returns an error or a changed model
+- the human reviewer overrides the recommendation
+
+The requirement should say what happens in each case. "The assistant is accurate" does not.
+
+## Business Connection
+
+Checkable requirements are how a project survives handover, audit and a change of vendor. They are also how an organisation avoids paying for a demo twice: once to build it and once to discover it does not meet the need.
+
+For AI, checkable requirements protect against benchmark theatre. A vendor can show a high score on a public benchmark and still fail on your data, your users and your failure cases. The organisation needs its own evaluation set and its own threshold.
+
+## Practice Exercises
+
+**Exercise 6.1 (Level 1).** Rewrite "the system should be secure" as three checkable requirements with different evidence.
+
+**Exercise 6.2 (Level 2).** Write Given, When, Then criteria for one use case, including two exceptions.
+
+**Exercise 6.3 (Level 3).** Design a 20-case evaluation set for a simple AI feature. Include at least four cases that should be refused.
+
+**Exercise 6.4 (Level 4).** Take an existing acceptance report and identify every claim that rests on a single successful demonstration. Write the evidence that would strengthen it.
+
+**Exercise 6.5 (Level 5).** Write the acceptance strategy for an AI-enabled system. Include the held-out set, the metric, the threshold, the human review, the fallback and the post-launch monitoring.
+
+## Chapter Summary
+
+- A checkable requirement names observable evidence, not just an intention.
+- Ambiguous adjectives need a condition, a measure and a population.
+- Given, When, Then turns behaviour into a testable scenario.
+- AI acceptance needs a held-out evaluation set, a metric and a threshold.
+- Attack the evidence before the vendor or the demo does.
+
+## Reflection
+
+Before moving on, ensure you:
+
+- [ ] Rewrote at least three vague requirements as checkable statements
+- [ ] Named the evidence for each requirement
+- [ ] Included failure and refusal cases in the AI evaluation set
+- [ ] Kept a held-out portion the model has not seen
+- [ ] Named who reviews the evidence and what happens when it fails
+
+## Your Learning Journal
+
+1. Which requirement was hardest to make checkable, and why?
+2. Where could a passing test still hide a real failure?
+3. What evidence would you want to see before trusting an AI vendor's claim?
+
+## Next Steps
+
+The requirements can be checked. The next chapter chooses the models that answer the open design questions, including the questions created by an AI-enabled system.
