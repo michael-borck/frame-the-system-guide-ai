@@ -2,12 +2,12 @@ version: 1
 style: editorial-c
 art: cover-art.png
 family: SYSTEMS / ANALYSIS AND DESIGN
-accent: '#3F6478'
-background: '#E2EBEF'
+accent: '#8B5CF6'
+background: '#2E1065'
 title_lines:
 - Frame the System,
 - Guide the AI
-dark: false
+dark: true
 pixel: false
 scene: frame
 art_origin: Locally constructed editable vector illustration.
