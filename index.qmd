@@ -8,6 +8,8 @@ This book is for people who have to turn a messy business request into a system 
 
 It assumes you can use an AI assistant to explore ideas, draft artefacts and inspect code. It does not assume you can write code. The judgement in this book is yours.
 
+The frame is also a trust contract: it defines what the agent must satisfy before you accept the output.
+
 ## The shift
 
 AI changes the economics of analysis and design. It can draft a problem statement, invent stakeholders, produce a data model, compare options and generate a working prototype from a short brief. That speed is useful. It also makes it easier to arrive at a confident answer without doing the analysis.
